@@ -70,6 +70,23 @@ namespace MovieApplication
                 default:
                     Console.WriteLine("This is an incorrect option entry. Please Re-try!");
                     break;
+                case "delete":
+
+                    DeleteMovie();
+
+                    break;
+
+                case "update":
+
+                    UpdateMovie();
+
+                    break;
+
+                case "display":
+
+                    DisplayMovies();
+
+                    break;
 
             }
             
