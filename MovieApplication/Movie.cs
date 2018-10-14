@@ -21,5 +21,9 @@ namespace MovieApplication
             this.Genre = genre;
             this.Director = director;
         }
+        public Movie()
+        {
+
+        }
     }
 }
