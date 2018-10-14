@@ -78,6 +78,7 @@ namespace MovieApplication
                 default:
                     Console.WriteLine("This is an incorrect option entry. Please Re-try!");
                     break;
+
             }
         }
         public static void SearchMovie()
