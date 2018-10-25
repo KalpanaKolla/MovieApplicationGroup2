@@ -16,10 +16,10 @@ namespace MovieApplication
 
         public Movie(string name, string actor, string genre, string director)
         {
-            this.MovieName = name;
-            this.MainActor = actor;
-            this.Genre = genre;
-            this.Director = director;
+            MovieName = name;
+            MainActor = actor;
+            Genre = genre;
+            Director = director;
         }
     }
 }

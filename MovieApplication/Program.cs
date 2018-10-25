@@ -9,6 +9,7 @@ namespace MovieApplication
     public class Program
     {
         static List<Movie> movies = new List<Movie>();
+        public static string input="";
         static void Main(string[] args)
         {
             
@@ -26,9 +27,44 @@ namespace MovieApplication
             movies.Add(new Movie("Gladiator", "Russel Crowe", "Drama", "Ridley Scott"));
             movies.Add(new Movie("The Next Three Days", "Russel Crowe", "Thriller", "Paul Haggis"));
 
-            
+            while (input!="quit")
+            {
+                Menu();
+                switch (input)
+                {
+                    case "movie":
+                        SearchMovie();
+                        break;
+                    case "actor":
+                        FindByActor();
+                        break;
+                    case "director":
+                        FindByDirector();
+                        break;
+                    case "add":
+                        AddMovie();
+                        break;
+                    case "delete":
+                        DeleteMovie();
+                        break;
+                    case "update":
+                        UpdateMovie();
+                        break;
+                    case "display":
+                        DisplayMovies();
+                        break;
+                    case "quit":
+                        return;
+                    default:
+                        Console.WriteLine("This is an incorrect option entry. Please Re-try!");
+                        break;
 
-
+                }
+                Console.WriteLine("******************************************************************");
+            }
+        }
+        public static void Menu()
+        {
             Console.WriteLine("Choose an Option from the following List");
             Console.WriteLine("\tmovie - Find a Movie");
             Console.WriteLine("\tactor - Find Movie By Actor");
@@ -39,47 +75,7 @@ namespace MovieApplication
             Console.WriteLine("\tdisplay - Display All Movies");
             Console.WriteLine("\tquit - Quit Program");
             Console.WriteLine("Your Option?");
-
-            switch (Console.ReadLine())
-            {
-                case "movie":
-                    SearchMovie();
-                    break;
-                case "actor":
-                    Console.WriteLine("Enter Actor Name");
-                    var actor = Console.ReadLine();
-                    foreach (var movie in movies.FindAll(x => x.MainActor.Contains(actor)))
-                    {
-                        Console.WriteLine("List of Movies by Actor: {0} ", movie.MovieName);
-                    }
-                    break;
-                case "director":
-                    Console.WriteLine("Enter Director Name");
-                    var director = Console.ReadLine();
-                    foreach (var movie in movies.FindAll(x => x.Director.Contains(director)))
-                    {
-                        Console.WriteLine("List of Movies by Director: {0} ", movie.MovieName);
-                    }
-                    break;
-                case "add":
-                    AddMovie();
-                    break;
-                case "delete":
-                    DeleteMovie();
-                    break;
-                case "update":
-                    UpdateMovie();
-                    break;
-                case "display":
-                    DisplayMovies();
-                    break;
-                case "quit":
-                    return ;
-                default:
-                    Console.WriteLine("This is an incorrect option entry. Please Re-try!");
-                    break;
-
-            }
+            input = Console.ReadLine();
         }
         public static void SearchMovie()
         {
@@ -118,6 +114,7 @@ namespace MovieApplication
                 movies.Remove(movie);
             }
             Console.WriteLine("Movie is deleted");
+            Console.WriteLine("List of Movies: \n");
             foreach (var m in movies)
                 Console.WriteLine(m.MovieName);
         }
@@ -133,8 +130,9 @@ namespace MovieApplication
                     m.MovieName = nameUpd;
             }
             Console.WriteLine("Movie Name is Updated Successfully");
+            Console.WriteLine("List of Movies: \n");
             foreach (var m in movies)
-                Console.WriteLine("List of Movies: \n" + m.MovieName);
+                Console.WriteLine(m.MovieName);
         }
         public static void DisplayMovies()
         {
@@ -144,6 +142,24 @@ namespace MovieApplication
                 Console.WriteLine(count);
                 Console.WriteLine("Movie Name: {0}, Actor: {1}, Genre: {2}, Director: {3}",movie.MovieName,movie.MainActor,movie.Genre,movie.Director);
                 count++;
+            }
+        }
+        public static void FindByActor()
+        {
+            Console.WriteLine("Enter Actor Name");
+            var actor = Console.ReadLine();
+            foreach (var movie in movies.FindAll(x => x.MainActor.Contains(actor)))
+            {
+                Console.WriteLine("List of Movies by Actor: {0} ", movie.MovieName);
+            }
+        }
+        public static void FindByDirector()
+        {
+            Console.WriteLine("Enter Director Name");
+            var director = Console.ReadLine();
+            foreach (var movie in movies.FindAll(x => x.Director.Contains(director)))
+            {
+                Console.WriteLine("List of Movies by Director: {0} ", movie.MovieName);
             }
         }
 
